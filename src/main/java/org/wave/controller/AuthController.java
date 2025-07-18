@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.wave.request.LoginRequest;
 import org.wave.request.RegisterRequest;
+import org.wave.request.UpdateUserRequest;
 import org.wave.response.LoginResponse;
 import org.wave.response.RegisterResponse;
+import org.wave.response.UpdateResponse;
 import org.wave.service.AuthService;
 
 import java.util.HashMap;
@@ -41,9 +43,11 @@ public class AuthController {
         RegisterResponse response = authService.checkCurrentUser(header);
         return ResponseEntity.ok(response);
     }
-    @GetMapping("/test/hash")
-    public String hashPassword() {
-        return passwordEncoder.encode("testpassword");
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<UpdateResponse> updateCurrentUser(@PathVariable long id, @RequestBody UpdateUserRequest request){
+        UpdateResponse response = authService.updateUser(id,request);
+        return ResponseEntity.ok(response);
     }
 
 }

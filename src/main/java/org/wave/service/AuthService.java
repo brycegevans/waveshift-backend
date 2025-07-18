@@ -11,9 +11,12 @@ import org.wave.model.User;
 import org.wave.repo.UserRepository;
 import org.wave.request.LoginRequest;
 import org.wave.request.RegisterRequest;
+import org.wave.request.UpdateUserRequest;
 import org.wave.response.LoginResponse;
 import org.wave.response.RegisterResponse;
+import org.wave.response.UpdateResponse;
 
+import javax.swing.text.html.Option;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -104,6 +107,29 @@ public class AuthService {
             return responseDto;
         } catch (Exception e) {
             throw new RuntimeException("Bad Request");
+        }
+
+    }
+    public UpdateResponse updateUser(long id, UpdateUserRequest request){
+        Optional<User> updateOpt = userRepo.findById(id);
+        if(updateOpt.isPresent()){
+            User updateUser = updateOpt.get();
+            updateUser.setFirstName(request.getFirstName());
+            updateUser.setLastName(request.getLastName());
+            updateUser.setUpdatedAt(LocalDateTime.now());
+            userRepo.save(updateUser);
+            UpdateResponse responseDto = new UpdateResponse(
+                    updateUser.getId(),
+                    updateUser.getEmail(),
+                    updateUser.getRole().toString(),
+                    updateUser.getUpdatedAt(),
+                    updateUser.getFirstName(),
+                    updateUser.getLastName()
+            );
+            return responseDto;
+        }
+        else{
+            throw new RuntimeException("No User Found with id");
         }
     }
 }

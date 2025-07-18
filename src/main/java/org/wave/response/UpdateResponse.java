@@ -2,19 +2,19 @@ package org.wave.response;
 
 import java.time.LocalDateTime;
 
-public class RegisterResponse {
+public class UpdateResponse {
     private long id;
     private String email;
     private String role;
-    private LocalDateTime joinedAt;
+    private LocalDateTime lastUpdated;
     private String firstName;
     private String lastName;
 
-    public RegisterResponse(long id, String email, String role, LocalDateTime joinedAt, String firstName, String lastName) {
+    public UpdateResponse(long id, String email, String role, LocalDateTime lastUpdated, String firstName, String lastName) {
         this.id = id;
         this.email = email;
         this.role = role;
-        this.joinedAt = joinedAt;
+        this.lastUpdated = lastUpdated;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -43,12 +43,12 @@ public class RegisterResponse {
         this.role = role;
     }
 
-    public LocalDateTime getJoinedAt() {
-        return joinedAt;
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
     }
 
-    public void setJoinedAt(LocalDateTime joinedAt) {
-        this.joinedAt = joinedAt;
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
     public String getFirstName() {
