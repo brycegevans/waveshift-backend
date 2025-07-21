@@ -33,7 +33,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200","https://merry-figolla-3de345.netlify.app")); // Angular dev server & netlify page
+        config.setAllowedOrigins(List.of("http://localhost:4200","https://merry-figolla-3de345.netlify.app", "https://waveshift-tech.com")); // Angular dev server & netlify page
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true); // If you're sending cookies/auth headers
